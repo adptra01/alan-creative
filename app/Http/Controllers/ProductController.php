@@ -13,4 +13,9 @@ class ProductController extends Controller
             'products' => Product::latest()->get()
         ]);
     }
+
+    public function store(Request $request)
+    {
+        
+    }
 }
