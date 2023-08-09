@@ -17,14 +17,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $no => $item)
+                        @foreach ($products as $no => $product)
                             <tr>
                                 <td>{{ ++$no }}.</td>
-                                <td>{{ $item->name }}</td>
-                                <td><img src="{{ Storage::url($item->image) }}" class="rounded-circle" width="30"
+                                <td>{{ $product->name }}</td>
+                                <td><img src="{{ Storage::url($product->image) }}" class="rounded-circle" width="30"
                                         height="30" alt="user image"></td>
 
-                                <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
+                                <td>Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
