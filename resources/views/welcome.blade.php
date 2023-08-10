@@ -71,33 +71,7 @@
                         <div class="col-xl-4">
                             <div class="border rounded p-4 mb-3 pb-3">
 
-                                <!-- Offer -->
-                                <h6 class="label-form">Costumer</h6>
-                                <input type="text" name="costumer" class="form-control mb-4"
-                                    placeholder="Enter name costumer" aria-label="Enter name costumer">
-
-                                <!-- Price Details -->
-                                <h6>Price Details</h6>
-                                <dl class="row mb-0">
-                                    <dt class="col-6 fw-normal">Bag Total</dt>
-                                    <dd class="col-6 text-end">$1198.00</dd>
-
-                                    <dt class="col-sm-6 fw-normal">Coupon Discount</dt>
-                                    <dd class="col-sm-6 text-end"><a href="javascript:void(0)">Apply Coupon</a></dd>
-
-                                    <dt class="col-6 fw-normal">Order Total</dt>
-                                    <dd class="col-6 text-end">$1198.00</dd>
-
-                                    <dt class="col-6 fw-normal">Delivery Charges</dt>
-                                    <dd class="col-6 text-end"><s class="text-muted">$5.00</s> <span
-                                            class="badge bg-label-success ms-1">Free</span></dd>
-                                </dl>
-
-                                <hr class="mx-n4">
-                                <dl class="row mb-0">
-                                    <dt class="col-6">Total</dt>
-                                    <dd class="col-6 fw-medium text-end mb-0">$1198.00</dd>
-                                </dl>
+                                @livewire('cart-products')
                             </div>
                             <div class="d-grid">
                                 <button class="btn btn-primary btn-next">Place Order</button>

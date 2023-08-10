@@ -7,7 +7,10 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 
 class ProductsTable extends Component
-{public $products;
+{
+    protected $listeners = ['cart_updated' => 'render'];
+
+    public $products;
     public array $quantity = [];
 
     public function mount()
@@ -33,7 +36,7 @@ class ProductsTable extends Component
             $product->id,
             $product->name,
             $this->quantity[$product_id],
-            $product->price / 100,
+            $product->price,
         );
 
         $this->emit('cart_updated');
