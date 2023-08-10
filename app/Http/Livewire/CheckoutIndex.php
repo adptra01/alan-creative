@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 
 class CheckoutIndex extends Component
 {
+    
     // use WithPagination;
     // protected $paginationTheme = 'bootstrap';
 

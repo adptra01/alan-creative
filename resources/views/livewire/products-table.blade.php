@@ -7,7 +7,8 @@
                     <div class="card-img-overlay">
                         <div class="alert alert-primary" style="width: 12rem; height: 12rem;" role="alert">
                             <p class="card-title fw-bold">{{ $product->name }}</p>
-                            <p class="card-text fw-bold">{{ $product->price }}</p>
+                            <p class="card-text fw-bold">{{ number_format($product->price, 0, '.', ',') }}
+                            </p>
                             @if ($cart->where('id', $product->id)->count())
                                 <div class="justify-content-center text-center">
                                     <button class="btn btn-primary m-3 disabled">Added</button>
