@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Transaction;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CartProducts extends Component
@@ -79,32 +81,44 @@ class CartProducts extends Component
     // }
 
     public function cartCheckout()
-{
-    // Validasi input
-    $this->validate([
-        'identifier' => 'required|string|unique:shoppingcart,identifier',
-    ]);
+    {
+        // Validasi input
+        $this->validate([
+            'identifier' => 'required|string|unique:shoppingcart,identifier',
+        ]);
 
-    if (Cart::count() === 0) {
-        $this->status = 'error';
-        session()->flash('gagal', 'Your shopping cart is empty.');
-        return;
+        if (Cart::count() === 0) {
+            $this->status = 'error';
+            session()->flash('gagal', 'Your shopping cart is empty.');
+            return;
+        }
+
+        // Simpan kode unik untuk order
+        $orderCode = 'ORD-' . $this->identifier . '-' . now()->format('YmdHis');
+
+        // Simpan data transaksi untuk setiap item dalam keranjang
+        foreach (Cart::content() as $cartItem) {
+            Transaction::create([
+                'product_id' => $cartItem->id,
+                'qty' => $cartItem->qty,
+                'total' => $cartItem->price * $cartItem->qty,
+                'customer' => $this->identifier,
+                'order_code' => $orderCode,
+            ]);
+
+        }
+
+        $this->emit('order_placed', $orderCode);
+
+
+        // Reset keranjang dan emit event
+        Cart::destroy();
+        $this->emit('cart_updated');
+
+        // Reset form input
+        $this->identifier = '';
+        session()->flash('success', 'Order successfully placed.');
     }
-
-    $cartData = Cart::content()->toArray(); // Konversi data cart menjadi array
-    Cart::instance('default')->store($this->identifier);
-
-    // Kirim data cart dan identifier
-    $this->emit('order_placed', ['identifier' => $this->identifier, 'cartData' => $cartData]);
-
-    // Reset keranjang dan emit event
-    Cart::destroy();
-    $this->emit('cart_updated');
-
-    // Reset form input
-    $this->identifier = '';
-    session()->flash('success', 'Order successfully placed.');
-}
 
 
 }

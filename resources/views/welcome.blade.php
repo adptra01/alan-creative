@@ -35,7 +35,7 @@
 
                             <!-- Shopping bag -->
                             @livewire('cart-counter')
-                            <label for="search" class="label-form">Searching</label>
+                            {{-- <label for="search" class="label-form">Searching</label> --}}
                             {{-- <input type="text" id="search" class="form-control border shadow-none mb-3"
                                 wire:model="search" placeholder="Search..." aria-label="Search..." /> --}}
 

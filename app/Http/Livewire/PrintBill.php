@@ -2,27 +2,41 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Transaction;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 
 class PrintBill extends Component
 {
-    protected $listeners = ['order_placed' => 'handleOrderPlaced'];
     public $identifier = '';
-    public $cartData = [];
+    public $transactions = [];
 
-    public function handleOrderPlaced($data)
+    protected $listeners = ['order_placed' => 'handleOrderPlaced'];
+
+    public function handleOrderPlaced($orderCode)
     {
-        $this->identifier = $data['identifier'];
-        $this->cartData = $data['cartData'];
+        $this->identifier = $orderCode;
+
+        // Ambil data transaksi berdasarkan order_code
+        $transactions = Transaction::where('order_code', $orderCode)->get();
+
+        // Simpan data transaksi
+        $this->transactions = $transactions;
+
         $this->render();
     }
 
     public function render()
     {
         return view('livewire.print-bill', [
-            'cartData' => $this->cartData,
-            'identifier' => $this->identifier,
+            'transactions' => $this->transactions,
+            'invoice' => $this->identifier,
         ]);
     }
 }
+
+
+
+
+
+

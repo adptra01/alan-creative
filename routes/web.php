@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,4 @@ Route::get('/', function () {
 
 Route::resource('products', ProductController::class);
 
+Route::get('print-bill/{slug}', [TransactionController::class, 'print'])->name('print.bill');
