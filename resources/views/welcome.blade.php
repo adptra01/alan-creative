@@ -33,8 +33,6 @@
                         <!-- Cart left -->
                         <div class="col-xl-8 mb-3 mb-xl-0">
 
-                            <!-- Offer alert -->
-                            @livewire('checkout-index')
                             <!-- Shopping bag -->
                             @livewire('cart-counter')
                             <label for="search" class="label-form">Searching</label>

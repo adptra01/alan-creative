@@ -34,26 +34,12 @@
     </dl>
     <div class="d-grid my-3">
         <button wire:click="cartCheckout" class="btn btn-primary btn-next">Place Order</button>
+        @livewire('print-bill')
     </div>
     <div wire:loading>
         <p class="text-center text-primary">Processing...................</p>
     </div>
-    @if (session('success'))
-        <div class="alert alert-primary mb-3" role="alert">
-            <div class="d-flex gap-3">
-                <div class="flex-shrink-0 badge badge-center rounded bg-light p-3">
-                    <i class="bx bx-bookmarks bx-sm text-success"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <div class="fw-medium fs-5 mb-2 fw-bold">Order Successfully</div>
-                    <ul class="list-unstyled mb-0">
-                        <li> {{ session('success') }} </li>
-                    </ul>
-                </div>
-            </div>
-            <button type="button" class="btn-close btn-pinned" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @elseif ($errors->any())
+    @if ($errors->any())
         <div class="alert alert-danger mb-3" role="alert">
             <div class="d-flex gap-3">
                 <div class="flex-shrink-0 badge badge-center rounded bg-light p-3">

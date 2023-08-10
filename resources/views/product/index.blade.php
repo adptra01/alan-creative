@@ -2,9 +2,6 @@
     <x-slot name="title">Products Page</x-slot>
     @include('layouts.table')
     <div class="card">
-        <div class="card-header">
-            @include('product.create')
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="example" class="display table nowrap" style="width:100%">
